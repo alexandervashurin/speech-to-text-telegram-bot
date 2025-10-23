@@ -260,10 +260,10 @@ class TelegramBot:
                 update.message.reply_text('❌ Отправьте аудиофайл.')
                 return
 
-            # Проверяем размер файла (лимит Telegram: 20 МБ для надежности)
-            if audio_file.file_size and audio_file.file_size > 20 * 1024 * 1024:  # 20 МБ
+            # Проверяем размер файла (лимит Telegram: 50 МБ)
+            if audio_file.file_size and audio_file.file_size > 50 * 1024 * 1024:  # 50 МБ
                 update.message.reply_text(
-                    "❌ Файл слишком большой ({} МБ). Максимальный размер: 20 МБ".format(
+                    "❌ Файл слишком большой ({} МБ). Максимальный размер: 50 МБ".format(
                         round(audio_file.file_size / (1024 * 1024), 1)
                     )
                 )
@@ -352,7 +352,7 @@ class TelegramBot:
             if "File is too big" in str(e):
                 update.message.reply_text(
                     "❌ Файл слишком большой для обработки. "
-                    "Попробуйте отправить файл меньшего размера (до 20 МБ) или "
+                    "Попробуйте отправить файл меньшего размера (до 50 МБ) или "
                     "разбейте длинное аудио на части."
                 )
             else:
